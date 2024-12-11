@@ -1,2 +1,2 @@
 #!/bin/bash
-#lsb_release -si 2-
+#lsb_release -is
