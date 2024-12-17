@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Check if domain is provided
-if [ -z "$1" ]; then
-  echo "Usage: $0 <domain>"
+if [ -z $1 ]; then
+  echo Usage: $0 <domain>
   exit 1
 fi
 
@@ -14,7 +14,7 @@ WHOIS_DATA=$(whois $DOMAIN)
 # Extract and format information using awk
 echo "Type,Name,Organization,Street,City,State,Postal Code,Country,Phone,Email"
 
-echo "$WHOIS_DATA" | awk '
+echo $WHOIS_DATA | awk '
 BEGIN { FS=":"; OFS="," }
 /Registrant Name/ { name=$2 }
 /Registrant Organization/ { org=$2 }
@@ -27,7 +27,7 @@ BEGIN { FS=":"; OFS="," }
 /Registrant Email/ { email=$2 }
 END { print "Registrant", name, org, street, city, state, postal, country, phone, email }'
 
-echo "$WHOIS_DATA" | awk '
+echo $WHOIS_DATA | awk '
 BEGIN { FS=":"; OFS="," }
 /Admin Name/ { name=$2 }
 /Admin Organization/ { org=$2 }
@@ -40,7 +40,7 @@ BEGIN { FS=":"; OFS="," }
 /Admin Email/ { email=$2 }
 END { print "Admin", name, org, street, city, state, postal, country, phone, email }'
 
-echo "$WHOIS_DATA" | awk '
+echo $WHOIS_DATA | awk '
 BEGIN { FS=":"; OFS="," }
 /Tech Name/ { name=$2 }
 /Tech Organization/ { org=$2 }
