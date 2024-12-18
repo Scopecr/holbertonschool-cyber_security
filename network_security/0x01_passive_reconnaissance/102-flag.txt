@@ -1,1 +1,2 @@
-5d00b61693c113a43af96d568909b4e3
+passive.hbtn.           604800  IN      NS      home.passive.hbtn.
+passive.hbtn.           604800  IN      NS      holberton.passive.hbtn.
