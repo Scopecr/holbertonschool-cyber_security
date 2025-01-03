@@ -1,1 +1,1 @@
-ip.proto in {1 2 6 17 47 50 51 89}
+&& ip.src == <target_ip>
