@@ -20,7 +20,7 @@ This repository contains materials and exercises for learning the basics of Linu
 ## Getting Started
 1. Clone the repository:
   ```
-  git clone: 
+  git clone: https://github.com/Scopecr/holbertonschool-cyber_security.git
   ```
 2. Navigate to the project directory:
   ```
