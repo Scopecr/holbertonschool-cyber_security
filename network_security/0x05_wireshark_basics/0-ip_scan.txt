@@ -1,1 +1,1 @@
-&& ip.src == <target_ip>
+icmp || igmp || ipproto == 1 || ipproto == 2 || ipproto == 6 || ipproto == 17 || ipproto == 47 || ipproto == 50 || ipproto == 51 || ipproto == 89
