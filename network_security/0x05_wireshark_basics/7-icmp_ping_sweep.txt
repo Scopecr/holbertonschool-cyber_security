@@ -1,1 +1,1 @@
-icmp && icmp[icmptype] == icmp-echo
+icmp.type == 8 && icmp.code == 0
