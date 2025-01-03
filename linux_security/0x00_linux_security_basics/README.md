@@ -29,9 +29,3 @@ This repository contains materials and exercises for learning the basics of Linu
 
 ## Usage
 Follow the exercises and examples provided in each topic directory. Each topic contains a README file with detailed instructions and explanations.
-
-## Contributing
-Contributions are welcome! Please fork the repository and create a pull request with your changes.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
