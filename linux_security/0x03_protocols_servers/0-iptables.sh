@@ -1,2 +1,2 @@
 #!/bin/bash
-iptables -A INPUT -s "$1" -j DROP
+iptables -v  -A INPUT -s "$1" -j DROP
