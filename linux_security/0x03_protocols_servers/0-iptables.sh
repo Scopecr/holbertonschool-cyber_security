@@ -1,2 +1,2 @@
 #!/bin/bash
-iptables -v  -A INPUT -s "$1" -j DROP
+iptables -L -v -n --line-numbers > iptables_rules.txt
