@@ -1,2 +1,2 @@
 #!/bin/bash
-nmap -p 161 -sU --script=snmp-info --script-args snmpcommunity=public $1
+nmap -sU -p 161 --script=snmp-info $1 | gerp -B 3 "public"
