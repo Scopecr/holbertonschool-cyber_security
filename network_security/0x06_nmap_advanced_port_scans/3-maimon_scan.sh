@@ -1,2 +1,2 @@
 #!/bin/bashsudo
-nmap -sM -p440-450 -v -pocket-trace -open $1
+nmap -sM -p21,22,23,80,443  -v -pocket-trace -open $1
