@@ -1,2 +1,2 @@
 #!/bin/bashsudo
-nmap -sM -p21,22,23,80,443  -v -pocket-trace -open $1
+nmap -sM -phttp,https,ftp,ssh,telnet  -v -pocket-trace -open $1
