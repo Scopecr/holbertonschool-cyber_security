@@ -7,12 +7,10 @@ Usage: read_write_heap.py pid search_string replace_string
 import sys
 import os
 
-
 def print_usage_and_exit():
     """Print usage information and exit with status code 1"""
     print("Usage: {} pid search_string replace_string".format(sys.argv[0]))
     sys.exit(1)
-
 
 def parse_maps_file(pid):
     """
@@ -20,7 +18,7 @@ def parse_maps_file(pid):
     Returns tuple of (start_address, end_address) for the heap
     """
     try:
-        maps_filename = "/proc/{}/maps".format(pid)
+        maps_filename = f"/proc/{pid}/maps"
         with open(maps_filename, 'r') as maps_file:
             for line in maps_file:
                 if "[heap]" in line:
@@ -31,12 +29,11 @@ def parse_maps_file(pid):
                     # Convert from hex string to int
                     return (int(start_address, 16), int(end_address, 16))
     except IOError as e:
-        print("Error: Can't open {} - {}".format(maps_filename, e))
+        print(f"Error: Can't open {maps_filename} - {e}")
         sys.exit(1)
 
     print("Error: No heap found in the maps file")
     sys.exit(1)
-
 
 def read_memory(pid, start_address, end_address):
     """
@@ -44,31 +41,29 @@ def read_memory(pid, start_address, end_address):
     Returns the memory content as bytes
     """
     try:
-        mem_filename = "/proc/{}/mem".format(pid)
+        mem_filename = f"/proc/{pid}/mem"
         with open(mem_filename, 'rb+') as mem_file:
             # Seek to the start address of the heap
             mem_file.seek(start_address)
             # Read the entire heap
             return mem_file.read(end_address - start_address)
     except IOError as e:
-        print("Error: Can't open or read {} - {}".format(mem_filename, e))
+        print(f"Error: Can't open or read {mem_filename} - {e}")
         sys.exit(1)
-
 
 def write_to_memory(pid, address, data):
     """
     Write data to the specified address in the process memory
     """
     try:
-        mem_filename = "/proc/{}/mem".format(pid)
+        mem_filename = f"/proc/{pid}/mem"
         with open(mem_filename, 'rb+') as mem_file:
             mem_file.seek(address)
             mem_file.write(data)
             return True
     except IOError as e:
-        print("Error: Can't write to {} - {}".format(mem_filename, e))
+        print(f"Error: Can't write to {mem_filename} - {e}")
         sys.exit(1)
-
 
 def main():
     """Main function to find and replace a string in the heap"""
@@ -94,7 +89,6 @@ def main():
 
     # Get heap address range
     start_address, end_address = parse_maps_file(pid)
-    # Removed print statement for heap location
 
     # Read memory from the heap
     heap_memory = read_memory(pid, start_address, end_address)
@@ -114,17 +108,14 @@ def main():
     # Find all occurrences of the search string
     position = heap_memory.find(search_bytes)
     if position == -1:
-        print("Error: String '{}' not found in heap".format(search_string))
+        print(f"Error: String '{search_string}' not found in heap")
         sys.exit(1)
 
     # Calculate the actual address in the process memory
     target_address = start_address + position
-    # Removed print statement for string found
 
     # Write the replace string to the process memory
     write_to_memory(pid, target_address, replace_bytes_padded)
-    # Removed print statement for successful replacement
-
 
 if __name__ == "__main__":
     main()
