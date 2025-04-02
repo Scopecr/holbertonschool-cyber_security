@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Script to find and replace a string in the heap of a running process
+Script to find and replace a string in the heap of a running process.
+
 Usage: read_write_heap.py pid search_string replace_string
 """
 
@@ -8,14 +9,16 @@ import sys
 import os
 
 def print_usage_and_exit():
-    """Print usage information and exit with status code 1"""
+    """Print usage information and exit with status code 1."""
     print("Usage: {} pid search_string replace_string".format(sys.argv[0]))
     sys.exit(1)
 
 def parse_maps_file(pid):
     """
-    Parse the /proc/{pid}/maps file to find the heap address range
-    Returns tuple of (start_address, end_address) for the heap
+    Parse the /proc/{pid}/maps file to find the heap address range.
+
+    Returns:
+        tuple: (start_address, end_address) for the heap.
     """
     try:
         maps_filename = f"/proc/{pid}/maps"
@@ -37,8 +40,15 @@ def parse_maps_file(pid):
 
 def read_memory(pid, start_address, end_address):
     """
-    Read the memory of the process within the given address range
-    Returns the memory content as bytes
+    Read the memory of the process within the given address range.
+
+    Args:
+        pid (int): The process ID.
+        start_address (int): The start address of the memory range.
+        end_address (int): The end address of the memory range.
+
+    Returns:
+        bytes: The memory content as bytes.
     """
     try:
         mem_filename = f"/proc/{pid}/mem"
@@ -53,7 +63,12 @@ def read_memory(pid, start_address, end_address):
 
 def write_to_memory(pid, address, data):
     """
-    Write data to the specified address in the process memory
+    Write data to the specified address in the process memory.
+
+    Args:
+        pid (int): The process ID.
+        address (int): The memory address to write to.
+        data (bytes): The data to write.
     """
     try:
         mem_filename = f"/proc/{pid}/mem"
@@ -66,7 +81,7 @@ def write_to_memory(pid, address, data):
         sys.exit(1)
 
 def main():
-    """Main function to find and replace a string in the heap"""
+    """Main function to find and replace a string in the heap."""
     # Check if the correct number of arguments is provided
     if len(sys.argv) != 4:
         print_usage_and_exit()
@@ -82,7 +97,6 @@ def main():
     replace_string = sys.argv[3]
 
     # Validate strings - search string cannot be empty
-    # But replace string CAN be empty (this is a valid use case)
     if len(search_string) < 1:
         print("Error: Search string cannot be empty")
         print_usage_and_exit()
