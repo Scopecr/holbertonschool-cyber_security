@@ -12,7 +12,3 @@ class HelloWorld
     puts @message
   end
 end
-
-#Create an instance and call the method
-hello = HelloWorld.new
-hello.print_hello
