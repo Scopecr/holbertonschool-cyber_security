@@ -9,7 +9,7 @@ class HelloWorld
 
 #define method
   def print_hello
-    puts message
+    puts @message
   end
 end
 
