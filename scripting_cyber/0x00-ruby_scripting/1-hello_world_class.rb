@@ -4,7 +4,7 @@
 class HelloWorld
   #variable message
   def initialize
-    @message = "Hello World"
+    @message = "Hello World!"
   end
 
 #define method
